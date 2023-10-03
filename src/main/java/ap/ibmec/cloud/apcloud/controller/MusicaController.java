@@ -38,7 +38,7 @@ public class MusicaController {
     private ArtistaRepository artistaRepository;
 
     @GetMapping
-    @Operation(summary = "Buscando postagens de um artista pelo ID da musica", method = "GET")
+    @Operation(summary = "Buscando todas as músicas armazenadas", method = "GET")
     public ResponseEntity<List<Musica>> getAll(@PathVariable("idArtista") long idArtista) {
         try {
             return new ResponseEntity<>(this.musicaRepository.findAll(), HttpStatus.OK);
@@ -67,7 +67,7 @@ public class MusicaController {
     }
 
     @GetMapping("{id}")
-    @Operation(summary = "Buscando todas as musicas de um artista", method = "GET")
+    @Operation(summary = "Buscando uma música pelo seu ID", method = "GET")
     public ResponseEntity<Musica> getById(@PathVariable("id") long id) {
 
         Optional<Musica> result = this.musicaRepository.findById(id);
