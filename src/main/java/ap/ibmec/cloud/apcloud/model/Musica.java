@@ -23,9 +23,11 @@ public class Musica {
     private String titulo;
 
     @Column(name = "letra", nullable = false)
+    @NotBlank(message = "O campo letra não pode ser vazio")
     private String letra;
 
     @Column(name = "Data_da_Publicacao", nullable = false)
+    @NotBlank(message = "O campo data não pode ser vazio")
     private LocalDate dataPublicacao;
 
 
