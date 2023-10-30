@@ -31,6 +31,8 @@ public class Artista {
     @JoinColumn(name = "artista_id")
     private List<Musica> musicas; 
 
+    @Column(nullable = true)
+    private String urlImage;
 
     public long getId() {
         return this.id;
@@ -58,6 +60,14 @@ public class Artista {
 
     public void addMusica(Musica musica) {
         this.musicas.add(musica);
+    }
+
+    public String getUrlImage() {
+        return this.urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
     
 }

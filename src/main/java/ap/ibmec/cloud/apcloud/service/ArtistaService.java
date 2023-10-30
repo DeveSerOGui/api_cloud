@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import ap.ibmec.cloud.apcloud.exception.ArtistaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.repository.ArtistaRepository;
 
@@ -14,6 +16,9 @@ public class ArtistaService {
 
     @Autowired
     private ArtistaRepository _artistaRepository;
+
+    @Autowired
+    private AzureStorageAccountService azureStorageAccountService;
 
     public List<Artista> findAll() {
         return this._artistaRepository.findAll();
@@ -30,7 +35,7 @@ public class ArtistaService {
 
     public Artista save(Artista artista) throws Exception {
         if (this._artistaRepository.countById(artista.getId()) > 0) {
-            throw new Exception("Este ID já existe na base de dados");
+            throw new ArtistaException("Este ID já existe na base de dados");
         }
         this._artistaRepository.save(artista);
         return artista;
@@ -40,7 +45,7 @@ public class ArtistaService {
         Optional<Artista> result = this._artistaRepository.findById(id);
 
         if (result.isPresent() == false) {
-            throw new Exception("Não encontrei o artista a ser atualizada");
+            throw new ArtistaException("Não encontrei o artista a ser atualizada");
         }
 
         Artista pessoaASerAtualizada = result.get();
@@ -52,12 +57,24 @@ public class ArtistaService {
     public void delete(long id) throws Exception {
         Optional<Artista> pessoaASerExcluida = this._artistaRepository.findById(id);
         if (pessoaASerExcluida.isPresent() == false) {
-            throw new Exception("Não encontrei o artista a ser atualizada");
+            throw new ArtistaException("Não encontrei o artista a ser atualizada");
         }
         this._artistaRepository.delete(pessoaASerExcluida.get());
     }
 
     public void saveEndereco(Artista artista) {
+        this._artistaRepository.save(artista);
+    }
+
+    public void uploadFileToArtista(MultipartFile file, long id) throws ArtistaException, Exception{
+        Optional<Artista> opArtista = this._artistaRepository.findById(id);
+        if (opArtista.isPresent() == false) {
+            throw new ArtistaException("Não encontrei o artista para associar a imagem");
+        }
+
+        Artista artista = opArtista.get();
+        String ulrImage = this.azureStorageAccountService.uploadFileToArtist(file);
+        artista.setUrlImage(ulrImage);
         this._artistaRepository.save(artista);
     }
 
