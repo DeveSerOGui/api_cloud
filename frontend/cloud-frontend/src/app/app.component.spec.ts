@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'cloud-frontend' title`, () => {
+  it(`should have the 'angular-projeto-ikaros' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('cloud-frontend');
+    expect(app.title).toEqual('angular-projeto-ikaros');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, cloud-frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-projeto-ikaros');
   });
 });
