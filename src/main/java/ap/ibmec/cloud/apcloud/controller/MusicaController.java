@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ap.ibmec.cloud.apcloud.exception.MusicaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.model.Musica;
 import ap.ibmec.cloud.apcloud.repository.ArtistaRepository;
@@ -29,13 +31,22 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/artista/{idArtista}/musica")
 @Tag(name = "Musica", description = "")
+@CrossOrigin
 public class MusicaController {
 
     @Autowired
     private MusicaRepository musicaRepository;
 
     @Autowired
+    private MusicaService musicaService;
+
+    /*
+    @Autowired
+    private ArtistaService artistaService;
+
+    @Autowired
     private ArtistaRepository artistaRepository;
+     */
 
     @GetMapping
     @Operation(summary = "Buscando todas as músicas armazenadas", method = "GET")
@@ -47,24 +58,12 @@ public class MusicaController {
         }
     }
 
-    @PostMapping()
+    @PostMapping
     @Operation(summary = "Adicionando musica", method = "POST")
-    public ResponseEntity<Musica> create(@PathVariable("idArtista") long idArtista, @RequestBody Musica musica) {
-        try {
-
-            Optional<Artista> artista = artistaRepository.findById(idArtista);
-
-            if (artista.isPresent() == false)
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
-            artista.get().addMusica(musica);
-            this.artistaRepository.save(artista.get());
-
-            return new ResponseEntity<>(musica, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
-        }
-    }
+    public ResponseEntity<Musica> create(@PathVariable("idArtista") long idArtista, @RequestBody Musica item) throws MusicaException {
+        Musica savedItem = musicaService.save(idArtista, item);
+        return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+    }  
 
     @GetMapping("{id}")
     @Operation(summary = "Buscando uma música pelo seu ID", method = "GET")

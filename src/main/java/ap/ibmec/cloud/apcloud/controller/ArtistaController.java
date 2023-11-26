@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.azure.core.annotation.Post;
+
 import ap.ibmec.cloud.apcloud.exception.ArtistaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
-import ap.ibmec.cloud.apcloud.service.ArtistaService;
 import ap.ibmec.cloud.apcloud.service.ArtistaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -43,13 +45,9 @@ public class ArtistaController {
     }
 
     @PostMapping
-    public ResponseEntity<Artista> create(@Valid @RequestBody Artista item) throws ArtistaException{
-        try {
-            Artista result = this.artistaService.save(item);
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+    public ResponseEntity<Artista> create(@RequestBody Artista item) throws ArtistaException {
+        Artista savedItem = artistaService.create(item);
+        return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -82,8 +80,8 @@ public class ArtistaController {
     }
 
     @PostMapping("{id}")
-    public ResponseEntity<String> uploadPostImage(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) throws ArtistaException, Exception {
-        artistaService.uploadFileToArtista(file, id);
+    public ResponseEntity<String> uploadArtistaImage(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) throws ArtistaException, Exception {
+        artistaService.uploadFileToArtist(file, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

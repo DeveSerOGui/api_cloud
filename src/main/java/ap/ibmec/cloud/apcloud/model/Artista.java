@@ -51,7 +51,7 @@ public class Artista {
     }
 
     public List<Musica> getMusicas() {
-        return this.musicas;
+        return musicas;
     }
 
     public void setMusicas(List<Musica> musicas) {
@@ -63,7 +63,7 @@ public class Artista {
     }
 
     public String getUrlImage() {
-        return this.urlImage;
+        return urlImage;
     }
 
     public void setUrlImage(String urlImage) {

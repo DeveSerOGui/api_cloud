@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostComponent } from './post.component';
+import { MusicasComponent } from './musicas.component';
 
-describe('PostComponent', () => {
-  let component: PostComponent;
-  let fixture: ComponentFixture<PostComponent>;
+describe('MusicasComponent', () => {
+  let component: MusicasComponent;
+  let fixture: ComponentFixture<MusicasComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PostComponent]
+      declarations: [MusicasComponent]
     });
-    fixture = TestBed.createComponent(PostComponent);
+    fixture = TestBed.createComponent(MusicasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -18,4 +18,4 @@ describe('PostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-})
+});

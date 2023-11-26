@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  standalone: false
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hello World Angular, a mudança';
-  title2:number = 0;
+  title = 'No jumper';
+  title2:Number = 0;
 }

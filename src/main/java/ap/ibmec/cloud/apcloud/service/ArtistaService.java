@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.azure.core.annotation.Post;
+
 import ap.ibmec.cloud.apcloud.exception.ArtistaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.repository.ArtistaRepository;
@@ -30,6 +32,10 @@ public class ArtistaService {
     
     public Optional<Artista> getById(long id) {
         return this._artistaRepository.findById(id);
+    }
+
+    public Artista create(Artista artista) {
+        return this._artistaRepository.save(artista);
     }
 
 
@@ -65,11 +71,13 @@ public class ArtistaService {
     public void saveEndereco(Artista artista) {
         this._artistaRepository.save(artista);
     }
-
-    public void uploadFileToArtista(MultipartFile file, long id) throws ArtistaException, Exception{
+    
+    public void uploadFileToArtist(MultipartFile file, long id) throws ArtistaException, Exception {
+        
         Optional<Artista> opArtista = this._artistaRepository.findById(id);
+        
         if (opArtista.isPresent() == false) {
-            throw new ArtistaException("Não encontrei o artista para associar a imagem");
+            throw new ArtistaException("Não encontrei o post para associar a imagem");
         }
 
         Artista artista = opArtista.get();

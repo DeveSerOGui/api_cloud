@@ -1,10 +1,17 @@
 <header>
-  <mat-toolbar color="primary">
-    <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>IBMEC CLOUD</span>
-  </mat-toolbar>
+  <navbar id="navbar">
+    <div class="navbar-container">
+      <img src="/cloud-frontend/src/app/Spotify_Logo_CMYK_White.png" alt="" class="logo" />
+      <ul class="navbar-items">
+        <li class="navbar-item"><a routerLink="/home">Home</a></li>
+        <li class="navbar-item"><a routerLink="/artistas">Artistas</a></li>
+        <span>|</span>
+        <li class="navbar-item"><a routerLink="/artistas">Sobre o Projeto</a></li>
+      </ul>
+    </div>
+  </navbar>
 </header>
 
-<router-outlet></router-outlet>
+<body>
+  <router-outlet></router-outlet>
+</body>

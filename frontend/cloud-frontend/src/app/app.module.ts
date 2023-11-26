@@ -1,32 +1,29 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostComponent } from './componentes/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './pages/home/home.component';
-import { DetailComponent } from './pages/detail/detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { CreateCommentComponent } from './componentes/create-comment/create-comment.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ArtistaComponent } from './artista/artista.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MusicasComponent } from './pages/musicas/musicas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
+    ArtistaComponent,
     HomeComponent,
-    DetailComponent,
-    CreateCommentComponent
+    MusicasComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +41,9 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatSnackBarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+  ],
+  bootstrap: [AppComponent],
+  schemas: [(NO_ERRORS_SCHEMA)]
 })
 export class AppModule { }

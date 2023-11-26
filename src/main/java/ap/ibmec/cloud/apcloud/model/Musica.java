@@ -2,13 +2,17 @@ package ap.ibmec.cloud.apcloud.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name= "musica")
@@ -27,9 +31,12 @@ public class Musica {
     private String letra;
 
     @Column(name = "Data_da_Publicacao", nullable = false)
-    @NotBlank(message = "O campo data não pode ser vazio")
+    @NotNull(message = "O campo data não pode ser vazio")
     private LocalDate dataPublicacao;
 
+    @ManyToOne
+    @JsonIgnore
+    private Artista artista;
 
     public long getId() {
         return this.id;
@@ -41,6 +48,10 @@ public class Musica {
 
     public String getTitulo() {
         return this.titulo;
+    }
+
+    public Artista getArtista() {
+        return artista;
     }
 
     public void setTitulo(String titulo) {
@@ -56,7 +67,7 @@ public class Musica {
     }
 
     public void setArtista(Artista artista) {
-        this.setArtista(artista);
+        this.artista = artista;
     }
 
     public LocalDate getDataPublicacao() {

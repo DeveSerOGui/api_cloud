@@ -9,12 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ap.ibmec.cloud.apcloud.model.Musica;
+import ap.ibmec.cloud.apcloud.exception.MusicaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.repository.MusicaRepository;
 import ap.ibmec.cloud.apcloud.service.ArtistaService;
 
 @Service
 public class MusicaService {
+
     @Autowired
     MusicaRepository musicaRepository;
 
@@ -47,11 +49,11 @@ public class MusicaService {
         return musica;
     }
 
-    public Musica save(long idArtista, Musica item) throws Exception {
+    public Musica save(long idArtista, Musica item) throws MusicaException {
         Optional<Artista> opArtista = this.artistaService.findById(idArtista);
 
         if (opArtista.isPresent() == false) {
-            throw new Exception("Post não encontrado");
+            throw new MusicaException("Post não encontrado");
         }
 
         Artista artista = opArtista.get();

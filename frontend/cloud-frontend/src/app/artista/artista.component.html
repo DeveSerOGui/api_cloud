@@ -1,0 +1,25 @@
+<body>
+	<div id="card-area">
+		<div class="wrapper">
+			<div class="box-area">
+				<div class="box" *ngFor="let item of artistas" >
+					<img [src]="item.urlImage" alt="">
+					<div class="overlay">
+						<h4>{{ item.nome }}</h4>
+						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            <button (click)="redirectToMusic(item.id)"> Músicas
+              <div class="arrow-wrapper">
+                <div class="arrow"></div>
+              </div>
+            </button>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+</body>
+
+
+
+
+
