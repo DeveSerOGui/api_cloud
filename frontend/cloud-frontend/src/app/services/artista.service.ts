@@ -11,10 +11,11 @@ export class ArtistaService {
   constructor(private httpCliente: HttpClient) { }
 
   public getArtistas() : Observable<Artista[]> {
-    return this.httpCliente.get<Artista[]>("http://localhost:8080/artista");
+    return this.httpCliente.get<Artista[]>("https://ibmec-cloud-java.azurewebsites.net/artista");
   }
 
   public getArtistasById(id: any) : Observable<Artista> {
-    return this.httpCliente.get<Artista>("http://localhost:8080/artista/" + id);
+    //return this.httpCliente.get<Artista>("https://ibmec-cloud-java.azurewebsites.net/artista/" + id);
+    return this.httpCliente.get<Artista>("https://ibmec-cloud-java.azurewebsites.net/artista/" + id);
   }
 }

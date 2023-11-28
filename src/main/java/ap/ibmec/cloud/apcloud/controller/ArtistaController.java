@@ -30,6 +30,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/artista")
 @Tag(name = "Artista", description = "")
+@CrossOrigin
 public class ArtistaController {
 
     @Autowired

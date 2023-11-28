@@ -17,13 +17,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ArtistaComponent } from './artista/artista.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MusicasComponent } from './pages/musicas/musicas.component';
+import { CreateMusicComponent } from './create-music/create-music/create-music.component';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistaComponent,
     HomeComponent,
-    MusicasComponent
+    MusicasComponent,
+    CreateMusicComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,11 @@ import { MusicasComponent } from './pages/musicas/musicas.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
   ],
   providers: [
   ],

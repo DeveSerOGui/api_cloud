@@ -1,12 +1,14 @@
 <body>
-<div class="card" *ngFor="let item of artista?.musicas">
-  <p class="card-title">{{item.titulo}}</p>
-  <p class="small-desc">
-    {{item.letra}}
-  </p>
-  <p>Data de lançamento: {{item.dataPublicacao}}</p>
-  <div class="go-corner">
-    <div class="go-arrow">→</div>
+  <button id="btnAddMusic" (click)="abrirDialogParaNovaMusica()">Adicionar música</button>
+  <div *ngIf="showCriarComentario == true">
+    <app-create-music [idArtista]="artista?.id" (newMusicaEvent)="atualizarListaMusica()"></app-create-music>
   </div>
-</div>
+  <div class="card" *ngFor="let item of artista?.musicas">
+    <p class="card-title">{{item.titulo}}</p>
+    <p class="small-desc">
+      {{item.letra}}
+    </p>
+    <p>Data de lançamento: {{item.dataPublicacao}}</p>
+  </div>
 </body>
+
