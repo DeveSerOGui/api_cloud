@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import ap.ibmec.cloud.apcloud.model.Musica;
+import ap.ibmec.cloud.apcloud.exception.ArtistaException;
 import ap.ibmec.cloud.apcloud.exception.MusicaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.repository.MusicaRepository;
@@ -22,6 +24,9 @@ public class MusicaService {
 
     @Autowired
     ArtistaService artistaService;
+
+    @Autowired
+    private AzureStorageAccountService azureStorageAccountService;
 
     public List<Musica> findAll() {
         return this.musicaRepository.findAll();
@@ -70,6 +75,20 @@ public class MusicaService {
             throw new Exception("Não encontrei a musica a ser atualizado");
 
         this.musicaRepository.delete(opMusica.get());
+    }
+
+    public void uploadFileToMusic(MultipartFile file, long id) throws MusicaException, Exception {
+        
+        Optional<Musica> opMusica = this.musicaRepository.findById(id);
+        
+        if (opMusica.isPresent() == false) {
+            throw new ArtistaException("Não encontrei a musica para associar a imagem");
+        }
+
+        Musica musica = opMusica.get();
+        String ulrImage = this.azureStorageAccountService.uploadFileToArtist(file);
+        musica.setUrlImage(ulrImage);
+        this.musicaRepository.save(musica);
     }
 
 }

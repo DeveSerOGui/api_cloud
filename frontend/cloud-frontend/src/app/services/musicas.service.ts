@@ -12,10 +12,12 @@ export class MusicasService {
   constructor(private http: HttpClient) { }
 
   public getMusicas(idArtista : any): Observable<Musica[]> {
+    //return this.http.get<Musica[]>(`http://localhost:8080/artista/${idArtista}/musica`)
     return this.http.get<Musica[]>(`https://ibmec-cloud-java.azurewebsites.net/artista/${idArtista}/musica`)
   }
 
   public criarMusica(idArtista : any, Musica: Musica): Observable<Musica>{
+    //return this.http.post<Musica>(`http://localhost:8080/artista/${idArtista}/musica`, Musica)
     return this.http.post<Musica>(`https://ibmec-cloud-java.azurewebsites.net/artista/${idArtista}/musica`, Musica)
   }
 }

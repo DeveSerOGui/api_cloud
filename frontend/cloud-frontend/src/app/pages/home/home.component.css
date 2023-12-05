@@ -82,7 +82,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	color: white;
-	background: url("https://sounter.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fsounter%2Ff03bd3ea-6700-488d-a48a-2d8fe9ca2475_Untitled%2Bdesign%2B%25282%2529.png%3Fauto%3Dcompress%2Cformat%26rect%3D0%2C0%2C1920%2C1080%26w%3D1920%26h%3D1080&w=3840&q=75") center center/cover;
+	background: url("https://img.freepik.com/fotos-gratis/mulher-atraente-e-encaracolada-com-sorrisos-cheios-de-dentes-mantem-as-maos-no-fone-de-ouvido-vestida-de-camiseta-preta-isolado-sobre-fundo-amarelo_273609-34303.jpg?w=1380&t=st=1701774980~exp=1701775580~hmac=0241db1d34d6f5ea420a3f090c92b7cd551473c38669616ff1a372cb987fc731") center center/cover;
 	background-color: rgba(0, 0, 0, 0.4);
 	background-blend-mode: color;
 }
@@ -102,105 +102,88 @@ body {
 	font-size: 1.1rem;
 }
 
-/* Footer */
-#footer {
-	background: black;
-	color: white;
-	padding: 80px 0;
+.container{
+	max-width: 1170px;
+	margin:auto;
 }
-
-#footer .footer-content {
+.row{
 	display: flex;
-	width: 60%;
-	margin: auto;
-	justify-content: space-between;
+	flex-wrap: wrap;
 }
-
-#footer .footer-content .footer-menu {
-	margin: 0 60px;
+ul{
 	list-style: none;
 }
-
-#footer .footer-content .footer-menu .footer-menu-item {
-	margin: 25px 0;
-	transition: all 300ms ease;
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
 }
-
-#footer .footer-content .footer-menu .footer-menu-item:hover {
-	color: var(--default-green);
-	cursor: pointer;
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
 }
-
-#footer .footer-content .footer-menu p {
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #919496;
-	font-size: 0.8rem;
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
 }
-
-/* Footer Socials */
-.socials {
-	display: flex;
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #1DB954;;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
 }
-
-.socials i {
-	margin: 0 20px;
-	font-size: 1.7rem;
-	transition: all 300ms ease;
-}
-
-.socials i:hover {
-	color: var(--default-green);
-	cursor: pointer;
-}
-
-/* Footer Info */
-.footer-info {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	width: 60%;
-	margin: auto;
-	font-weight: bold;
-	color: #919496;
-	font-size: 0.75rem;
-	padding-top: 50px;
-}
-
-.footer-info .footer-info-items {
-	display: flex;
-	list-style: none;
-}
-
-.footer-info .footer-info-items .footer-info-item {
-	margin: 0 10px;
-	transition: all 300ms ease;
-}
-
-.footer-info .footer-info-items .footer-info-item:hover {
-	color: var(--default-green);
-	cursor: pointer;
-}
-
-.footer-info .rights .country {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+.footer-col ul li:not(:last-child){
 	margin-bottom: 10px;
 }
-
-.footer-info .rights .country p {
-	transition: all 300ms ease;
+.footer-col ul li a, #gmail{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
 }
 
-.footer-info .rights .country p:hover {
-	color: var(--default-green);
-	cursor: pointer;
+/*responsive*/
+@media(max-width: 767px){
+  #showcase .showcase-container h2 {
+    font-size: 3rem;
+  }
+  .textoShowcase{
+    text-align: center;
+    padding: .5rem;
+    font-size: 15rem;
+  }
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
 }
+}
+@media(max-width: 574px){
 
-.footer-info .rights .country .brazil-flag {
-	height: 20px;
-	width: auto;
-	display: inline-block;
-	margin-left: 10px;
+  #showcase .showcase-container h2 {
+    font-size: 2rem;
+  }
+  .textoShowcase{
+    text-align: center;
+    padding: .5rem;
+    font-size: 15rem;
+  }
+
+  .footer-col{
+    width: 100%;
+}
 }

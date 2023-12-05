@@ -38,6 +38,9 @@ public class Musica {
     @JsonIgnore
     private Artista artista;
 
+    @Column(nullable = true)
+    private String urlImage;
+
     public long getId() {
         return this.id;
     }
@@ -76,6 +79,14 @@ public class Musica {
 
     public void setDataPublicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
+    }
+    
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
     
     

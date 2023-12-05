@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import ap.ibmec.cloud.apcloud.exception.ArtistaException;
 import ap.ibmec.cloud.apcloud.exception.MusicaException;
 import ap.ibmec.cloud.apcloud.model.Artista;
 import ap.ibmec.cloud.apcloud.model.Musica;
@@ -39,14 +42,6 @@ public class MusicaController {
 
     @Autowired
     private MusicaService musicaService;
-
-    /*
-    @Autowired
-    private ArtistaService artistaService;
-
-    @Autowired
-    private ArtistaRepository artistaRepository;
-     */
 
     @GetMapping
     @Operation(summary = "Buscando todas as músicas armazenadas", method = "GET")
@@ -109,5 +104,11 @@ public class MusicaController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
+    }
+    
+     @PostMapping("{id}")
+    public ResponseEntity<String> uploadMusicaImage(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) throws MusicaException, Exception {
+        musicaService.uploadFileToMusic(file, id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

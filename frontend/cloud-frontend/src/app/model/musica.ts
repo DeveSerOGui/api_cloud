@@ -3,4 +3,5 @@ export interface Musica{
   titulo?:String;
   letra?:String;
   dataPublicacao?:Date;
+  urlImage?:String;
 }

@@ -18,7 +18,8 @@ import { ArtistaComponent } from './artista/artista.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MusicasComponent } from './pages/musicas/musicas.component';
 import { CreateMusicComponent } from './create-music/create-music/create-music.component';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SobreProjetoComponent } from './pages/sobre-projeto/sobre-projeto.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
     ArtistaComponent,
     HomeComponent,
     MusicasComponent,
-    CreateMusicComponent
+    CreateMusicComponent,
+    SobreProjetoComponent
   ],
   imports: [
     BrowserModule,
